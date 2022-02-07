@@ -1,4 +1,4 @@
-Jeux poker :
+Jeu poker :
 	- Cartes	--> class Carte		--> interface graphique 
 				|__ Deck (liste de cartes)
 	- Joueur	--> class Joueur	--> Deck + de l'argent + actions pour miser, se coucher, relancer
