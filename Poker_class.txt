@@ -1,8 +1,24 @@
 Jeu poker :
-	- Cartes	--> class Carte		--> interface graphique 
-				|__ Deck (liste de cartes)
+
+    - Deck      --> liste de cartes
+                --> générer la liste (vérifier que toutes les cartes sont tirées)
+                --> les mélanger
+                --> tirer une carte (suppression de la liste des cartes) gérer si liste vide
+                -->
+
+    Interface carte pour si changement de jeu, deck doit être réutilisable
+	- Cartes	--> class Carte		--> interface graphique
+	            |__> valeur     --> class Valeur (2, 3, 4, 5, 6, 7, 8, 9, 10, Valet, Dame, Roi, As)
+                                --> comparer valeur égalité
+                                --> comparer valeur inégalité
+
+	            |__> couleur    --> class Couleur (Pic, Trèfle, Coeur, Carreau)
+	                            --> comparer couleur (égalité)
+
+
+
 	- Joueur	--> class Joueur	--> Deck + de l'argent + actions pour miser, se coucher, relancer
-	- Serveur	--> class Serveur	--> 
-	- Client	--> class Client
+	- Serveur	--> class Serveur	-->
+	- Client	--> class Client    -->
 	- Plateau	--> Cartes retournées, Joueurs, Pots, Mises en cours, --> interface graphique
 	
