@@ -1,0 +1,8 @@
+Jeux poker :
+	- Cartes	--> class Carte		--> interface graphique 
+				|__ Deck (liste de cartes)
+	- Joueur	--> class Joueur	--> Deck + de l'argent + actions pour miser, se coucher, relancer
+	- Serveur	--> class Serveur	--> 
+	- Client	--> class Client
+	- Plateau	--> Cartes retournées, Joueurs, Pots, Mises en cours, --> interface graphique
+	
