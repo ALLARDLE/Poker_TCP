@@ -15,10 +15,16 @@ Jeu poker :
 	            |__> couleur    --> class Couleur (Pic, Trèfle, Coeur, Carreau)
 	                            --> comparer couleur (égalité)
 
+    - Main      --> deux cartes
 
-
-	- Joueur	--> class Joueur	--> Deck + de l'argent + actions pour miser, se coucher, relancer
+	- Joueur	--> class Joueur	--> Nom, Main, De l'argent, Petite blind ?, Grosse Blind ?, Dealer ? actions pour miser, se coucher, relancer
 	- Serveur	--> class Serveur	-->
 	- Client	--> class Client    -->
-	- Plateau	--> Cartes retournées, Joueurs, Pots, Mises en cours, --> interface graphique
+
+
+	- Plateau	--> Deck, Carte retournées sur le plateau, liste des joueurs, valeur du Pot, la mise de chaque joueur, état chaque joueur(couché, en cours)
+	            --> comparer les cartes jouées par les joueurs aux cartes du plateau
+	            |__> combinaisons
+	            --> redistribuer l'argent au vainqueur
+
 	
