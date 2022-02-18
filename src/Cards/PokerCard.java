@@ -26,7 +26,6 @@ public class PokerCard implements ICard {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof PokerCard pokerCard)) return false;
-        if (!super.equals(o)) return false;
         return getColor().equals(pokerCard.getColor()) && getValue().equals(pokerCard.getValue());
     }
 

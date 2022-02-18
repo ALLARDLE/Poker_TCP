@@ -1,5 +1,7 @@
 package Cards;
 
+import java.util.Objects;
+
 public class PokerValue implements IValue {
     public enum Values  {
         ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING
@@ -23,6 +25,18 @@ public class PokerValue implements IValue {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PokerValue that)) return false;
+        return value == that.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 
     @Override

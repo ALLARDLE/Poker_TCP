@@ -9,4 +9,5 @@ package Cards;
  */
 
 interface IValue {
+    boolean equals(Object o);
 }
