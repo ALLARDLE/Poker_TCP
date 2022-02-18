@@ -25,7 +25,7 @@ public class Value {
         }
     }
 
-    public boolean isValidValue(Values value)   {
+    private boolean isValidValue(Values value)   {
         for (Values values: Values.values())   {
             if (values == value)    {
                 return true;

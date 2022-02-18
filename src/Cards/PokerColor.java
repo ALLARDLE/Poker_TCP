@@ -8,7 +8,7 @@ package Cards;
  *
  */
 
-public class PokerColor {
+public class PokerColor extends Color {
     public enum PokerColors {
         HEART, DIAMOND, SPADE, CLUB
     }
@@ -24,7 +24,16 @@ public class PokerColor {
         }
     }
 
-    public boolean isValidColor(PokerColors color) {
+    @Override
+    public boolean isValidColor() {
+        switch (this.color) {
+            case HEART, DIAMOND, SPADE, CLUB -> { return true; }
+            default -> { return false; }
+        }
+    }
+
+
+    private boolean isValidColor(PokerColors color) {
         for (PokerColors pokerColors: PokerColors.values()) {
             if (color == pokerColors)   {
                 return true;
