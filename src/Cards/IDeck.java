@@ -10,5 +10,6 @@ import java.util.List;
  */
 
 interface IDeck {
-    private void createDeck() {}
+    void createDeck();
+    ICard removeCard(ICard card) throws Exception;
 }

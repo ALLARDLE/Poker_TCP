@@ -1,6 +1,5 @@
 package Cards;
 
-import java.util.Objects;
 
 public class PokerCard implements ICard {
 
@@ -27,11 +26,6 @@ public class PokerCard implements ICard {
         if (this == o) return true;
         if (!(o instanceof PokerCard pokerCard)) return false;
         return getColor().equals(pokerCard.getColor()) && getValue().equals(pokerCard.getValue());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getColor(), getValue());
     }
 
     @Override

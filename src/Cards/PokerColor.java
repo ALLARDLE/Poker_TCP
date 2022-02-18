@@ -11,13 +11,13 @@ import java.util.Objects;
  */
 
 public class PokerColor implements IColor {
-    public enum PokerColors {
+    public enum Colors {
         HEART, DIAMOND, SPADE, CLUB
     }
 
-    public final PokerColors color;       // couleur
+    public final Colors color;       // couleur
 
-    public PokerColor(PokerColors color) throws ColorException {
+    public PokerColor(Colors color) throws ColorException {
         if (isValidColor(color))    {
             this.color = color;
         }
@@ -25,16 +25,9 @@ public class PokerColor implements IColor {
             throw new ColorException("Bad color");
         }
     }
-    public boolean isValidColor() {
-        switch (this.color) {
-            case HEART, DIAMOND, SPADE, CLUB -> { return true; }
-            default -> { return false; }
-        }
-    }
 
-
-    private boolean isValidColor(PokerColors color) {
-        for (PokerColors pokerColors: PokerColors.values()) {
+    private boolean isValidColor(Colors color) {
+        for (Colors pokerColors: Colors.values()) {
             if (color == pokerColors)   {
                 return true;
             }
@@ -47,11 +40,6 @@ public class PokerColor implements IColor {
         if (this == o) return true;
         if (!(o instanceof PokerColor that)) return false;
         return color == that.color;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(color);
     }
 
     @Override
