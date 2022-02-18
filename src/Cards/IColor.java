@@ -1,0 +1,4 @@
+package Cards;
+
+interface IColor {
+}

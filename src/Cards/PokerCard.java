@@ -2,13 +2,24 @@ package Cards;
 
 import java.util.Objects;
 
-public class PokerCard extends Card {
-    private final PokerColor color;
-    private final Value value;
+public class PokerCard implements ICard {
 
-    public PokerCard(PokerColor color, Value value) {
+    private final PokerColor color;
+    private final PokerValue value;
+
+    public PokerCard(PokerColor color, PokerValue value) {
         this.color = color;
         this.value = value;
+    }
+
+    @Override
+    public IValue getValue() {
+        return this.value;
+    }
+
+    @Override
+    public IColor getColor() {
+        return this.color;
     }
 
     @Override
@@ -25,7 +36,10 @@ public class PokerCard extends Card {
     }
 
     @Override
-    public String toString()    {
-        return "Card{" + color + ", " + value + '}';
+    public String toString() {
+        return "PokerCard{" +
+                this.color.toString() +
+                ", " + this.value.toString() +
+                '}';
     }
 }

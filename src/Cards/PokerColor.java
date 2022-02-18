@@ -1,6 +1,8 @@
 package Cards;
 
 
+import java.util.Objects;
+
 /**
  * @author Allard Léni & Billon François
  *
@@ -8,7 +10,7 @@ package Cards;
  *
  */
 
-public class PokerColor extends Color {
+public class PokerColor implements IColor {
     public enum PokerColors {
         HEART, DIAMOND, SPADE, CLUB
     }
@@ -23,8 +25,6 @@ public class PokerColor extends Color {
             throw new ColorException("Bad color");
         }
     }
-
-    @Override
     public boolean isValidColor() {
         switch (this.color) {
             case HEART, DIAMOND, SPADE, CLUB -> { return true; }
@@ -43,8 +43,20 @@ public class PokerColor extends Color {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PokerColor that)) return false;
+        return color == that.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color);
+    }
+
+    @Override
     public String toString() {
-        return "Color = " + color;
+        return "PokerColor=" + color;
     }
 }
 
