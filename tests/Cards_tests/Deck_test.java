@@ -12,9 +12,9 @@ public class Deck_test {
         assertEquals(52, deck.getNumberOfCardsLeft());
 
         PokerCard c1 = (PokerCard) deck.getCards(1).get(0);
-        PokerCard c2 = new PokerCard(new PokerColor(PokerColor.Colors.HEART), new PokerValue(PokerValue.Values.ACE));
-        assertEquals(c2, c1);
+        PokerCard c2 = new PokerCard(new PokerColor(PokerColor.Colors.HEART), new PokerValue(PokerValue.Values.TWO));
         assertEquals(51, deck.getNumberOfCardsLeft());
+        assertEquals(c2, c1);
         deck.shuffle();
 
         deck.getCards(10);

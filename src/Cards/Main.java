@@ -26,8 +26,6 @@ public class Main {
 
             System.out.println(h1.getCards().get(0).isUpperTo(h1.getCards().get(1)));
 
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

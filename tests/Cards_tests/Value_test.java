@@ -20,4 +20,10 @@ public class Value_test {
         assertNotEquals(c2, c3);
         assertNotEquals(c2, c4);
     }
+
+    @Test
+    public void testToString() throws ValueException {
+        PokerValue c1 = new PokerValue(PokerValue.Values.THREE);
+        assertEquals("Value=THREE", c1.toString());
+    }
 }
