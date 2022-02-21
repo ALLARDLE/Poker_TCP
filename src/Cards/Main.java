@@ -17,7 +17,10 @@ public class Main {
             IDeck deck = new PokerDeck();
             System.out.println(deck);
 
-        } catch (ValueException | ColorException e) {
+            PokerCard rmCard = (PokerCard) deck.removeCard(card);
+            System.out.println(rmCard);
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

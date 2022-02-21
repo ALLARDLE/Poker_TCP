@@ -1,17 +1,16 @@
 package Cards;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 public class PokerDeck implements IDeck {
-    private List<ICard> cards = new LinkedList<>();
+    private List<ICard> cards = new ArrayList<>();
     private int numberOfCardsLeft;
 
     public PokerDeck() throws ColorException, ValueException {
         resetDeck();
         setDeck();
-        shuffle();
     }
 
     public int getNumberOfCardsLeft() {
@@ -19,15 +18,15 @@ public class PokerDeck implements IDeck {
     }
 
     /**
-     * Méthode permettant de tirer des cartes. Les cartes sont supprimées de la liste
+     * Méthode permettant de tirer des cartes. Les cartes tirées sont supprimées de la liste
      */
     public List<ICard> getCards(int numberOfCards) {
 
-        List<ICard> returnCards = new LinkedList<>();
+        List<ICard> returnCards = new ArrayList<>();
         if (numberOfCards > numberOfCardsLeft)  numberOfCards = numberOfCardsLeft;
         for (int i=0; i<numberOfCards; i++) {
             numberOfCardsLeft--;
-            returnCards.add(this.cards.remove(1));
+            returnCards.add(this.cards.remove(0));
         }
         return returnCards;
     }
@@ -48,12 +47,12 @@ public class PokerDeck implements IDeck {
 
     public ICard removeCard(ICard card) throws Exception {
         for (int i=0; i<numberOfCardsLeft; i++) {
-            if(cards.get(i) == card)    {
+            if (cards.get(i).equals(card))  {
                 numberOfCardsLeft--;
                 return cards.remove(i);
             }
         }
-        throw new Exception("Error");
+        throw new Exception("This card not existing");
     }
 
     public void shuffle()   {
