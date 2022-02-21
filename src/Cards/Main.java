@@ -16,9 +16,12 @@ public class Main {
 
             IDeck deck = new PokerDeck();
             System.out.println(deck);
+            deck.shuffle();
 
-            PokerCard rmCard = (PokerCard) deck.removeCard(card);
-            System.out.println(rmCard);
+            Hand h1 = new Hand(deck.getCards(5));
+            System.out.println(h1);
+
+
 
         } catch (Exception e) {
             e.printStackTrace();

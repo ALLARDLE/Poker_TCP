@@ -6,7 +6,7 @@ import java.util.List;
 public class Hand {
     private final List<ICard> cards;
 
-    public Hand(ArrayList<ICard> hand){
+    public Hand(List<ICard> hand){
         this.cards = hand;
     }
 
@@ -44,5 +44,12 @@ public class Hand {
      */
     public int handSize() {
         return cards.size();
+    }
+
+    @Override
+    public String toString() {
+        return "Hand{" +
+                "cards=" + cards +
+                '}';
     }
 }
