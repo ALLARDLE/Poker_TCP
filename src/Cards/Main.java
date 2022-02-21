@@ -21,6 +21,11 @@ public class Main {
             Hand h1 = new Hand(deck.getCards(5));
             System.out.println(h1);
 
+            System.out.println(h1.getCards().get(0));
+            System.out.println(h1.getCards().get(1));
+
+            System.out.println(h1.getCards().get(0).isUpperTo(h1.getCards().get(1)));
+
 
 
         } catch (Exception e) {

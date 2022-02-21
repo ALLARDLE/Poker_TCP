@@ -1,10 +1,9 @@
 package Cards;
 
-import java.util.Objects;
 
 public class PokerValue implements IValue {
     public enum Values  {
-        ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING
+        TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE
     }
     
     private final Values value;
@@ -25,6 +24,13 @@ public class PokerValue implements IValue {
             }
         }
         return false;
+    }
+
+    @Override
+    public int isUpperTo(Object o) throws Exception {
+        if (this == o) return 0;
+        if (!(o instanceof PokerValue that)) throw new Exception();
+        return this.value.compareTo(that.value);
     }
 
     @Override

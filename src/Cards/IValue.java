@@ -10,4 +10,5 @@ package Cards;
 
 interface IValue {
     boolean equals(Object o);
+    int isUpperTo(Object o) throws Exception;
 }

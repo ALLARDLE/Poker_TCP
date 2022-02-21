@@ -15,4 +15,5 @@ interface ICard {
     IColor getColor();
 
     boolean equals(Object o);
+    int isUpperTo(Object o) throws Exception;
 }

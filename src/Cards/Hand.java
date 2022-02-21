@@ -10,6 +10,11 @@ public class Hand {
         this.cards = hand;
     }
 
+
+    public List<ICard> getCards() {
+        return cards;
+    }
+
     /**
      * Fusionne la main actuelle avec d'autres cartes
      */
