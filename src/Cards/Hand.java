@@ -29,7 +29,6 @@ public class Hand {
      *  Ajoute un carte en bas de la main
      */
     public void addCardToBottom(ICard c) {
-
         cards.add(0, c);
     }
 
@@ -37,7 +36,6 @@ public class Hand {
      * Supprime la premiere carte de la main
      */
     public ICard removeCardFromTop() {
-
         if (handSize() < 1) {
             return null;
         }
@@ -53,8 +51,8 @@ public class Hand {
 
     @Override
     public String toString() {
-        return "Hand{" +
-                "cards=" + cards +
+        return "Hand{ " +
+                cards +
                 '}';
     }
 }

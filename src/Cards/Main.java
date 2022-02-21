@@ -18,9 +18,13 @@ public class Main {
             System.out.println(deck);
             deck.shuffle();
 
-            Hand h1 = new Hand(deck.getCards(5));
-            System.out.println(h1);
+            Hand h1 = new Hand(deck.getCards(26));
+            Hand h2 = new Hand(deck.getCards(26));
 
+            System.out.println(h1);
+            System.out.println(h2);
+
+            System.out.println("\n");
             System.out.println(h1.getCards().get(0));
             System.out.println(h1.getCards().get(1));
 

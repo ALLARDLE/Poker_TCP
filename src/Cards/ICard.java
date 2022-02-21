@@ -9,11 +9,8 @@ package Cards;
  */
 
 interface ICard {
-
     IValue getValue();
-
     IColor getColor();
-
     boolean equals(Object o);
     int isUpperTo(Object o) throws Exception;
 }
