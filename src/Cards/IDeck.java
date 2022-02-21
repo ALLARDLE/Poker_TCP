@@ -10,6 +10,10 @@ import java.util.List;
  */
 
 interface IDeck {
-    void createDeck();
+    int getNumberOfCardsLeft();
+    List<ICard> getCards(int numberOfCards);
     ICard removeCard(ICard card) throws Exception;
+    void shuffle();
+    void setDeck() throws ColorException, ValueException;
+    void resetDeck();
 }
