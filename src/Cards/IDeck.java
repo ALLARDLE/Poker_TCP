@@ -9,8 +9,11 @@ import java.util.List;
  * Elle doit pouvoir générer toutes les cartes et les mélanger.
  */
 
-interface IDeck {
+public interface IDeck {
     int getNumberOfCardsLeft();
+    void addCard(ICard card);
+    void addCards(List<ICard> cards);
+    ICard getCard();
     List<ICard> getCards(int numberOfCards);
     ICard removeCard(ICard card) throws Exception;
     void shuffle();

@@ -8,7 +8,7 @@ package Cards;
  * Une carte doit définir une méthode comparaison entre les valeurs.
  */
 
-interface ICard {
+public interface ICard {
     IValue getValue();
     IColor getColor();
     boolean equals(Object o);

@@ -13,29 +13,49 @@ public class PokerDeck implements IDeck {
         setDeck();
     }
 
+    public PokerDeck(List<ICard> cards) {
+        this.cards = cards;
+        numberOfCardsLeft = cards.size();
+    }
+
     public int getNumberOfCardsLeft() {
         return numberOfCardsLeft;
     }
 
-    /**
-     * Méthode permettant de tirer des cartes. Les cartes tirées sont supprimées de la liste
-     */
-    public List<ICard> getCards(int numberOfCards) {
+    @Override
+    public void addCard(ICard card)   {
+        cards.add(card);
+        numberOfCardsLeft++;
+    }
 
+    @Override
+    public void addCards(List<ICard> cards) {
+        for (ICard c : cards)   {
+            addCard(c);
+        }
+    }
+
+    @Override
+    public ICard getCard() {
+        if (numberOfCardsLeft != 0) {
+            numberOfCardsLeft--;
+            return cards.remove(0);
+        }
+        else return null;
+    }
+
+    @Override
+    public List<ICard> getCards(int numberOfCards) {
         List<ICard> returnCards = new ArrayList<>();
         if (numberOfCards > numberOfCardsLeft)  numberOfCards = numberOfCardsLeft;
         for (int i=0; i<numberOfCards; i++) {
-            numberOfCardsLeft--;
-            returnCards.add(this.cards.remove(0));
+            returnCards.add(getCard());
         }
         return returnCards;
     }
 
-    public void resetDeck() {
-        this.cards.clear();
-        this.numberOfCardsLeft = 0;
-    }
 
+    @Override
     public void setDeck() throws ColorException, ValueException {
         for (PokerColor.Colors pokerColors : PokerColor.Colors.values()) {
             for (PokerValue.Values pokerValues : PokerValue.Values.values()) {
@@ -45,6 +65,15 @@ public class PokerDeck implements IDeck {
         numberOfCardsLeft = cards.size();
     }
 
+    @Override
+    public void resetDeck() {
+        this.cards.clear();
+        this.numberOfCardsLeft = 0;
+    }
+
+
+
+    @Override
     public ICard removeCard(ICard card) throws Exception {
         for (int i=0; i<numberOfCardsLeft; i++) {
             if (cards.get(i).equals(card))  {
