@@ -8,11 +8,15 @@ import java.util.List;
 public class PokerPlayer implements IPlayer {
 
     private final String playerName;
-    private final IDeck playerDeck;
+    private final IDeck playerDeck = new;
 
     public PokerPlayer(String name, IDeck deck) {
         this.playerName = name;
         this.playerDeck = deck;
+    }
+
+    public PokerPlayer(String name) {
+        this.playerName = name;
     }
 
     @Override
@@ -52,9 +56,9 @@ public class PokerPlayer implements IPlayer {
 
     @Override
     public String toString() {
-        return "PokerPlayer{" +
-                "playerName='" + playerName + '\'' +
-                ", playerDeck=" + playerDeck +
+        return "Joueur {" +
+                playerName + '\'' +
+                playerDeck +
                 '}';
     }
 }

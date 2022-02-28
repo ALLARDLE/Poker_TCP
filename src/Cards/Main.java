@@ -35,11 +35,9 @@ public class Main {
 
 
             System.out.println("Nouveau jeu");
-            PokerGame game = new PokerGame("Joueur1", "Joueur2");
+            PokerGame game = new PokerGame(3);
 
-            System.out.println(game.getPlayer1());
-            System.out.println(game.getPlayer2());
-
+            System.out.println(game.getPlayers());
             game.run();     // lance le jeu
 
         } catch (Exception e) {

@@ -6,51 +6,78 @@ import Player.PokerPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class PokerGame {
-    private IPlayer player1;
-    private IPlayer player2;
+    private final List<IPlayer> players = new ArrayList<>();
     private int nbTour = 1;
-    private List<ICard> pot = new ArrayList<>();
+    private final IDeck deck = new PokerDeck();
 
-    public PokerGame(String name1, String name2) throws ColorException, ValueException {
-        // création des cartes
-        IDeck deck1 = new PokerDeck();
-        deck1.shuffle();
-
-        IDeck deck2 = new PokerDeck(deck1.getCards((int) deck1.getNumberOfCardsLeft() / 2));
-
+    public PokerGame(int nbPlayer) throws ColorException, ValueException {
         // création des joueurs
-        player1 = new PokerPlayer(name1, deck1);
-        player2 = new PokerPlayer(name2, deck2);
+        Scanner input = new Scanner(System.in);
+        for(int i=0; i<nbPlayer; i++)   {
+            System.out.print("Username ");
+            System.out.print(i+1);
+            System.out.print(" : ");
+            String userName = input.nextLine();
+            players.add(new PokerPlayer(userName));
+        }
+
+        // création des cartes
+        deck.shuffle();
+        distributeAllCards();
+    }
+
+    private void distributeCards(int nbCards)   {
+        int index = 0;
+        if (nbCards > deck.getNumberOfCardsLeft())  {
+            distributeAllCards();
+        }
+        else {
+            for (int i = 0; i < nbCards; i++) {
+                players.get(index % players.size()).addCard(deck.getCard());
+                index++;
+            }
+        }
+    }
+
+    private void distributeAllCards()   {
+        int index = 0;
+        for (ICard card: deck.getCards(deck.getNumberOfCardsLeft()))    {
+            players.get(index % players.size()).addCard(card);
+            index++;
+        }
     }
 
     public void run() throws Exception {
         while (true) {
             System.out.print("Tour : ");
             System.out.println(nbTour);
-            if (player1.getNumberOfCardsLeft() == 0) {
-                // joueur 2 a gagné
-                System.out.print("Victoire joueur 2 en ");
-                System.out.print(nbTour);
-                System.out.println(" tours");
-                break;
-            } else if (player2.getNumberOfCardsLeft() == 0) {
-                // Joueur 1 a gagné
-                System.out.println("Victoire joueur 1");
-                System.out.print(nbTour);
-                System.out.println(" tours");
-                break;
-            } else {
-                turn();
+            for (IPlayer player: players)   {
+                if (player.getNumberOfCardsLeft() == 0) {
+                    players.remove(player);
+                    System.out.print("Le joueur ");
+                    System.out.print(player.getName());
+                    System.out.println(" a perdu");
+                }
             }
-
+            turn();
             nbTour++;
         }
     }
 
     public void turn() throws Exception {
         // TODO vérifier qu'il reste des cartes chez les joueurs
+        for (IPlayer player: players)   {
+            ICard card = player.getCard();
+            deck.addCard(card);
+
+            System.out.print("Le joueur ");
+            System.out.print(player.getName());
+            System.out.println(" a perdu");
+
+        }
         ICard c1 = player1.getCard();
         pot.add(c1);
         System.out.print("Joueur 1 : ");
@@ -85,6 +112,17 @@ public class PokerGame {
 
     public int getNbTour() {
         return nbTour;
+    }
+
+    /**
+     *
+     * @return
+     * @throws IndexOutOfBoundsException
+     */
+    public List<ICard> getOneCardPerPlayer() throws IndexOutOfBoundsException   {
+
+        ICard c1 = player1.getCard();
+        ICard c2 = player1.getCard();
     }
 
     @Override
