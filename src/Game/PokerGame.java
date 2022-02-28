@@ -72,7 +72,7 @@ public class PokerGame {
         }
         else {
             System.out.print("Joueur ");
-            System.out.print(players.get(index + 1).getName());
+            System.out.print(players.get(index).getName());
             System.out.println(" gagne");
 
             players.get(index).addCards(cards);       // ajoute les cartes du pot au joueur ayant gagné la manche
