@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class Value_test {
     @Test
-    public void testValue() throws ValueException {
+    public void testValue() {
         PokerValue c1 = new PokerValue(PokerValue.Values.ACE);
         PokerValue c2 = new PokerValue(PokerValue.Values.ACE);
         PokerValue c3 = new PokerValue(PokerValue.Values.THREE);
@@ -22,7 +22,7 @@ public class Value_test {
     }
 
     @Test
-    public void testToString() throws ValueException {
+    public void testToString() {
         PokerValue c1 = new PokerValue(PokerValue.Values.THREE);
         assertEquals("Value=THREE", c1.toString());
     }

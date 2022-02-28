@@ -8,7 +8,7 @@ import java.util.List;
 public class PokerPlayer implements IPlayer {
 
     private final String playerName;
-    private final IDeck playerDeck = new;
+    private IDeck playerDeck = new PokerDeck();
 
     public PokerPlayer(String name, IDeck deck) {
         this.playerName = name;

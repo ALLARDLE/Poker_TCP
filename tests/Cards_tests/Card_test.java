@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class Card_test {
     @Test
-    public void testEquals() throws ColorException, ValueException {
+    public void testEquals() {
         PokerCard c1 = new PokerCard(new PokerColor(PokerColor.Colors.HEART), new PokerValue(PokerValue.Values.ACE));
         PokerCard c2 = new PokerCard(new PokerColor(PokerColor.Colors.HEART), new PokerValue(PokerValue.Values.ACE));
         PokerCard c3 = new PokerCard(new PokerColor(PokerColor.Colors.HEART), new PokerValue(PokerValue.Values.THREE));
@@ -32,7 +32,7 @@ public class Card_test {
     }
 
     @Test
-    public void testToString() throws ValueException, ColorException {
+    public void testToString() {
         PokerCard c1 = new PokerCard(new PokerColor(PokerColor.Colors.HEART), new PokerValue(PokerValue.Values.ACE));
         assertEquals("PokerCard{PokerColor=HEART, Value=ACE}", c1.toString());
     }

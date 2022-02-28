@@ -18,6 +18,7 @@ public class Main {
             System.out.println(card);
 
             IDeck deck = new PokerDeck();
+            deck.setDeck();
             System.out.println(deck);
             deck.shuffle();
 

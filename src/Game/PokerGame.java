@@ -13,7 +13,7 @@ public class PokerGame {
     private int nbTour = 1;
     private final IDeck deck = new PokerDeck();
 
-    public PokerGame(int nbPlayer) throws ColorException, ValueException {
+    public PokerGame(int nbPlayer) {
         // création des joueurs
         Scanner input = new Scanner(System.in);
         for(int i=0; i<nbPlayer; i++)   {
@@ -25,6 +25,7 @@ public class PokerGame {
         }
 
         // création des cartes
+        deck.setDeck();
         deck.shuffle();
         distributeAllCards();
     }
@@ -44,102 +45,80 @@ public class PokerGame {
 
     private void distributeAllCards()   {
         int index = 0;
-        for (ICard card: deck.getCards(deck.getNumberOfCardsLeft()))    {
-            players.get(index % players.size()).addCard(card);
+        while(deck.getNumberOfCardsLeft() > 0)  {
+            players.get(index % players.size()).addCard(deck.getCard());
             index++;
         }
     }
 
-    public void run() throws Exception {
-        while (true) {
-            System.out.print("Tour : ");
+    public void run() {
+        while (players.size() > 1) {
+            System.out.print("\nTour : ");
             System.out.println(nbTour);
-            for (IPlayer player: players)   {
-                if (player.getNumberOfCardsLeft() == 0) {
-                    players.remove(player);
-                    System.out.print("Le joueur ");
-                    System.out.print(player.getName());
-                    System.out.println(" a perdu");
-                }
-            }
             turn();
             nbTour++;
         }
     }
 
-    public void turn() throws Exception {
-        // TODO vérifier qu'il reste des cartes chez les joueurs
-        for (IPlayer player: players)   {
-            ICard card = player.getCard();
-            deck.addCard(card);
-
-            System.out.print("Le joueur ");
-            System.out.print(player.getName());
-            System.out.println(" a perdu");
-
-        }
-        ICard c1 = player1.getCard();
-        pot.add(c1);
-        System.out.print("Joueur 1 : ");
-        System.out.println(c1);
-
-        ICard c2 = player2.getCard();
-        pot.add(c2);
-        System.out.print("Joueur 2 : ");
-        System.out.println(c2);
-
+    public void turn() {
+        List<ICard> cards = drawCards();    // récupère une carte pour chaque joueur
 
         // comparaison des cartes
-        if (c1.isUpperTo(c2) > 0)   {
-            // p1 a gagné
-            System.out.println("Joueur 1 gagne");
-            player1.addCards(pot);
-            pot.clear();
+        int index = compareCards(cards);      // index de la personne ayant gagné
+
+        if (index == -1)    {             // égalité
+            System.out.println("Égalité");
+            drawCards();            // on tire de nouveau des cartes
         }
-        else if (c1.isUpperTo(c2) < 0)  {
-            System.out.println("Joueur 2 gagne");
-            player2.addCards(pot);
-            pot.clear();
+        else {
+            System.out.print("Joueur ");
+            System.out.print(players.get(index + 1).getName());
+            System.out.println(" gagne");
+
+            players.get(index).addCards(cards);       // ajoute les cartes du pot au joueur ayant gagné la manche
+            cards.clear();        // vide le pot
         }
-        else    {
-            System.out.println("Egalite");
-            // on "brule" une carte pour chaque joueur
-            pot.add(player1.getCard());
-            pot.add(player2.getCard());
-            turn();     // on repart sur un tour
+    }
+
+    private int compareCards(List<ICard> cards)   {
+        return 0;
+    }
+
+    private List<ICard> drawCards()    {
+        List<ICard> cards = new ArrayList<>();
+        for (IPlayer player: players)   {
+            if (player.getNumberOfCardsLeft() == 0) {
+                players.remove(player);
+                System.out.print("Le joueur ");
+                System.out.print(player.getName());
+                System.out.println(" a perdu");
+            }
+            else    {
+                ICard card = player.getCard();
+                cards.add(card);
+                System.out.print("Le joueur ");
+                System.out.print(player.getName());
+                System.out.print(" a tiré : ");
+                System.out.println(card);
+            }
         }
+        return cards;
     }
 
     public int getNbTour() {
         return nbTour;
     }
 
-    /**
-     *
-     * @return
-     * @throws IndexOutOfBoundsException
-     */
-    public List<ICard> getOneCardPerPlayer() throws IndexOutOfBoundsException   {
-
-        ICard c1 = player1.getCard();
-        ICard c2 = player1.getCard();
-    }
 
     @Override
     public String toString() {
         return "PokerGame{" +
-                "player1=" + player1 +
-                ", player2=" + player2 +
+                "players=" + players +
                 ", nbTour=" + nbTour +
-                ", pot=" + pot +
                 '}';
     }
 
-    public IPlayer getPlayer1() {
-        return player1;
-    }
-
-    public IPlayer getPlayer2() {
-        return player2;
+    public List<IPlayer> getPlayers() {
+        return players;
     }
 }

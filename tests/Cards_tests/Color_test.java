@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class Color_test {
     @Test
-    public void testEqual() throws ColorException {
+    public void testEqual() {
         PokerColor c1 = new PokerColor(PokerColor.Colors.HEART);
         PokerColor c2 = new PokerColor(PokerColor.Colors.HEART);
         PokerColor c3 = new PokerColor(PokerColor.Colors.DIAMOND);

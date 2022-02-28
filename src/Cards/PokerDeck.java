@@ -8,9 +8,8 @@ public class PokerDeck implements IDeck {
     private List<ICard> cards = new ArrayList<>();
     private int numberOfCardsLeft;
 
-    public PokerDeck() throws ColorException, ValueException {
-        resetDeck();
-        setDeck();
+    public PokerDeck() {
+        numberOfCardsLeft = 0;
     }
 
     public PokerDeck(List<ICard> cards) {
@@ -22,6 +21,9 @@ public class PokerDeck implements IDeck {
         return numberOfCardsLeft;
     }
 
+    public List<ICard> getDeck ()    {
+        return cards;
+    }
     @Override
     public void addCard(ICard card)   {
         cards.add(card);
@@ -56,7 +58,7 @@ public class PokerDeck implements IDeck {
 
 
     @Override
-    public void setDeck() throws ColorException, ValueException {
+    public void setDeck() {
         for (PokerColor.Colors pokerColors : PokerColor.Colors.values()) {
             for (PokerValue.Values pokerValues : PokerValue.Values.values()) {
                 cards.add(new PokerCard(new PokerColor(pokerColors), new PokerValue(pokerValues)));

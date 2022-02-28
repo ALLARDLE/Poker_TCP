@@ -6,14 +6,11 @@ public class PokerValue implements IValue {
         TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE
     }
     
-    private final Values value;
+    private Values value;
     
-    public PokerValue(Values value) throws ValueException {
+    public PokerValue(Values value) {
         if (isValidValue(value)) {
             this.value = value;
-        }
-        else {
-            throw new ValueException();
         }
     }
 
@@ -24,6 +21,14 @@ public class PokerValue implements IValue {
             }
         }
         return false;
+    }
+
+    public Values getValue() {
+        return value;
+    }
+
+    public void setValue(Values value) {
+        this.value = value;
     }
 
     @Override

@@ -13,10 +13,11 @@ public interface IDeck {
     int getNumberOfCardsLeft();
     void addCard(ICard card);
     void addCards(List<ICard> cards);
+    List<ICard> getDeck();
     ICard getCard();
     List<ICard> getCards(int numberOfCards);
     ICard removeCard(ICard card) throws Exception;
     void shuffle();
-    void setDeck() throws ColorException, ValueException;
+    void setDeck();
     void resetDeck();
 }

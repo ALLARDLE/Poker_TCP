@@ -1,8 +1,6 @@
 package Cards;
 
 
-import java.util.Objects;
-
 /**
  * @author Allard Léni & Billon François
  *
@@ -15,14 +13,11 @@ public class PokerColor implements IColor {
         HEART, DIAMOND, SPADE, CLUB
     }
 
-    public final Colors color;       // couleur
+    private Colors color;       // couleur
 
-    public PokerColor(Colors color) throws ColorException {
+    public PokerColor(Colors color) {
         if (isValidColor(color))    {
             this.color = color;
-        }
-        else    {
-            throw new ColorException("Bad color");
         }
     }
 

@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class Deck_test {
     @Test
-    public void testEquals() throws ColorException, ValueException {
+    public void testEquals() {
         PokerDeck deck = new PokerDeck();
         assertEquals(52, deck.getNumberOfCardsLeft());
 

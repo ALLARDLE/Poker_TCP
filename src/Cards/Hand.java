@@ -19,7 +19,6 @@ public class Hand {
      * Fusionne la main actuelle avec d'autres cartes
      */
     public void mergeHand(Hand other){
-
         for (ICard c : other.cards){
             this.addCardToBottom(c);
         }
