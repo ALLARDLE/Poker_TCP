@@ -49,4 +49,12 @@ public class PokerPlayer implements IPlayer {
     public void addCards(List<ICard> cards) {
         playerDeck.addCards(cards);
     }
+
+    @Override
+    public String toString() {
+        return "PokerPlayer{" +
+                "playerName='" + playerName + '\'' +
+                ", playerDeck=" + playerDeck +
+                '}';
+    }
 }
