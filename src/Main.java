@@ -1,8 +1,7 @@
-package Cards;
-
-import Game.PokerGame;
-
-import java.util.concurrent.TimeUnit;
+import model.card.*;
+import model.hand.*;
+import model.player.IPlayer;
+import model.player.PokerPlayer;
 
 public class Main {
 
@@ -18,29 +17,25 @@ public class Main {
             System.out.println(card);
 
             IDeck deck = new PokerDeck();
-            deck.setDeck();
-            System.out.println(deck);
-            deck.shuffle();
 
-            Hand h1 = new Hand(deck.getCards(26));
-            Hand h2 = new Hand(deck.getCards(26));
+            IHand h1 = new PokerHand(deck.getCard(), deck.getCard());
+            IHand h2 = new PokerHand(deck.getCard(), deck.getCard());
 
             System.out.println(h1);
             System.out.println(h2);
 
-            System.out.println("\n");
-            System.out.println(h1.getCards().get(0));
-            System.out.println(h1.getCards().get(1));
+            IPlayer player1 = new PokerPlayer("Toto", 1000);
+            player1.setHand(h1);
 
-            System.out.println(h1.getCards().get(0).isUpperTo(h1.getCards().get(1)));
+            System.out.println(player1);
 
-
+            /**
             System.out.println("Nouveau jeu");
             PokerGame game = new PokerGame(3);
 
             System.out.println(game.getPlayers());
             game.run();     // lance le jeu
-
+            */
         } catch (Exception e) {
             e.printStackTrace();
         }
