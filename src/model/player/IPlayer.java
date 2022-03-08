@@ -1,7 +1,7 @@
 package model.player;
 
 
-import model.hand.IHand;
+import model.card.IHand;
 
 
 public interface IPlayer {

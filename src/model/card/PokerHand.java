@@ -1,6 +1,4 @@
-package model.hand;
-
-import model.card.ICard;
+package model.card;
 
 import java.util.ArrayList;
 import java.util.List;

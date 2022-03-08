@@ -1,4 +1,4 @@
-package model.hand;
+package model.card;
 
 import model.card.ICard;
 

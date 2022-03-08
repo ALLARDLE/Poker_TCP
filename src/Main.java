@@ -1,5 +1,4 @@
 import model.card.*;
-import model.hand.*;
 import model.player.IPlayer;
 import model.player.PokerPlayer;
 
