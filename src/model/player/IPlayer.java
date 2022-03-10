@@ -10,4 +10,6 @@ public interface IPlayer {
     IHand getHand();
     void setMoney(int money);
     int getMoney();
+    boolean isBigBlind();
+    boolean isSmallBlind();
 }
