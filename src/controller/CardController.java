@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CardController implements ICardController {
 
-    private List<IPlayer> players;
+    private final List<IPlayer> players;
     private final IDeck deck;
     private final List<ICard> communityCards = new ArrayList<ICard>();
 

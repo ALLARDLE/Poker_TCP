@@ -2,16 +2,17 @@ package controller;
 
 import model.player.IPlayer;
 
-import java.util.ArrayList;
+import java.util.List;
+
 
 public class RoundController {
 
-    private final ArrayList<IPlayer> players;
+    private final List<IPlayer> players;
     private IScoreController scoreController;
     private final ICardController cardController;
     private static int roundCount;
 
-    public RoundController(ArrayList<IPlayer> pls,
+    public RoundController(List<IPlayer> pls,
                            IScoreController sc,
                            ICardController cc)  {
         this.players = pls;

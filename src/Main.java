@@ -1,40 +1,36 @@
+import controller.*;
 import model.card.*;
 import model.player.IPlayer;
 import model.player.PokerPlayer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
         try {
-            PokerValue valueCard = new PokerValue(PokerValue.Values.ACE);
-            System.out.println(valueCard);
-
-            PokerColor colorCard = new PokerColor(PokerColor.Colors.CLUB);
-            System.out.println(colorCard);
-
-            ICard card = new PokerCard(colorCard, valueCard);
-            System.out.println(card);
-
             IDeck deck = new PokerDeck();
+            deck.shuffle();
 
-            IHand h1 = new PokerHand(deck.getCard(), deck.getCard());
-            IHand h2 = new PokerHand(deck.getCard(), deck.getCard());
+            // Connexion des joueurs ...
+            // Simulation
+            List<IPlayer> players = new ArrayList<>();
+            for (int i=0; i<5; i++) {
+                players.add(new PokerPlayer(String.format("Player%d", i), 2000));
+            }
 
-            System.out.println(h1);
-            System.out.println(h2);
+            IScoreController scoreController = new PokerScoreController(players, 10);
+            ICardController cardController = new CardController(players, deck);
+            RoundController roundController = new RoundController(players, scoreController, cardController);
 
-            IPlayer player1 = new PokerPlayer("Toto", 1000);
-            player1.setHand(h1);
+            cardController.dealPLayerHand();
+            roundController.run();
 
-            System.out.println(player1);
+            System.out.println(cardController.getCommunityCards());
+            System.out.println(players.get(0).toString());
 
-            /**
-            System.out.println("Nouveau jeu");
-            PokerGame game = new PokerGame(3);
 
-            System.out.println(game.getPlayers());
-            game.run();     // lance le jeu
-            */
         } catch (Exception e) {
             e.printStackTrace();
         }
