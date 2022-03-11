@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
+            // Création du paquet de cartes
             IDeck deck = new PokerDeck();
             deck.shuffle();
 
@@ -20,6 +21,7 @@ public class Main {
                 players.add(new PokerPlayer(String.format("Player%d", i), 2000));
             }
 
+            // Création des controllers
             IScoreController scoreController = new PokerScoreController(players, 10);
             ICardController cardController = new CardController(players, deck);
             RoundController roundController = new RoundController(players, scoreController, cardController);

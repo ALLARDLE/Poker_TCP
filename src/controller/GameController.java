@@ -20,4 +20,11 @@ public class GameController {
         playerController = pc;
         roundController = rc;
     }
+
+    /**
+     * Vérifier la gestion des joueurs, ...
+     */
+    public void run()   {
+        // Distribue les cartes,
+    }
 }
