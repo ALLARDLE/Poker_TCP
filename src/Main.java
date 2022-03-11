@@ -10,27 +10,29 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            // Création du paquet de cartes
-            IDeck deck = new PokerDeck();
-            deck.shuffle();
 
             // Connexion des joueurs ...
             // Simulation
             List<IPlayer> players = new ArrayList<>();
-            for (int i=0; i<5; i++) {
+            for (int i=1; i<4; i++) {
                 players.add(new PokerPlayer(String.format("Player%d", i), 2000));
             }
 
-            // Création des controllers
-            IScoreController scoreController = new PokerScoreController(players, 10);
-            ICardController cardController = new CardController(players, deck);
-            RoundController roundController = new RoundController(players, scoreController, cardController);
+            // Création du plateau
+            PokerGameController pokerGameController = new PokerGameController(players);
+            pokerGameController.init();         // distribue les cartes aux joueurs
 
-            cardController.dealPLayerHand();
-            roundController.run();
+            pokerGameController.addPlayer(new PokerPlayer("TOTO", 2000));
 
-            System.out.println(cardController.getCommunityCards());
-            System.out.println(players.get(0).toString());
+
+            //cardController.dealPLayerHand();
+            //roundController.run();
+
+            //System.out.println(cardController.getCommunityCards());
+            for (IPlayer pl : players)  {
+                System.out.println(pl);
+
+            }
 
 
         } catch (Exception e) {
