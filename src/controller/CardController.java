@@ -10,12 +10,10 @@ import java.util.List;
 
 public class CardController implements ICardController {
 
-    private final List<IPlayer> players;
     private final IDeck deck;
     private final List<ICard> communityCards = new ArrayList<>();
 
-    public CardController (List<IPlayer> players, IDeck deck)   {
-        this.players = players;
+    public CardController (IDeck deck)   {
         this.deck = deck;
     }
 
@@ -23,7 +21,7 @@ public class CardController implements ICardController {
      * Distribue les cartes aux joueurs
      */
     @Override
-    public void dealPlayerHand() {
+    public void dealPlayerHand(List<IPlayer> players) {
         if (deck.getNumberOfCardsLeft() > 0)    {
             for (IPlayer player : players)  {
                 player.setHand(new PokerHand(deck.getCard(), deck.getCard()));

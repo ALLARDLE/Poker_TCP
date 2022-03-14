@@ -1,5 +1,4 @@
-import controller.*;
-import model.card.*;
+import controller.PokerGameController;
 import model.player.IPlayer;
 import model.player.PokerPlayer;
 
@@ -14,26 +13,13 @@ public class Main {
             // Connexion des joueurs ...
             // Simulation
             List<IPlayer> players = new ArrayList<>();
-            for (int i=1; i<4; i++) {
+            for (int i=1; i<6; i++) {
                 players.add(new PokerPlayer(String.format("Player%d", i), 2000));
             }
 
             // Création du plateau
             PokerGameController pokerGameController = new PokerGameController(players);
-            pokerGameController.init();         // distribue les cartes aux joueurs
-
-            pokerGameController.addPlayer(new PokerPlayer("TOTO", 2000));
-
-
-            //cardController.dealPLayerHand();
-            //roundController.run();
-
-            //System.out.println(cardController.getCommunityCards());
-            for (IPlayer pl : players)  {
-                System.out.println(pl);
-
-            }
-
+            pokerGameController.start();
 
         } catch (Exception e) {
             e.printStackTrace();

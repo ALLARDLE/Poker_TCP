@@ -47,6 +47,6 @@ public class PokerValue implements ICardValue {
 
     @Override
     public String toString() {
-        return "Value=" + value;
+        return value.toString();
     }
 }

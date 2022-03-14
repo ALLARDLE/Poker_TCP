@@ -1,19 +1,23 @@
 package controller;
 
 
-import Cards.Player;
-import model.card.IDeck;
 import model.card.PokerDeck;
 import model.player.IPlayer;
 
 import java.util.List;
 
 /**
- * Joue le rôle du croupier :
- * Accepte les joueurs à la table, donne l'ordre de distribuer les cartes, prend en compte les mises, ...
+ * Cette classe centralise toutes les actions sur le table.
+ * Elle centralise donc :
+ *      - la distribution des cartes (CardController)
+ *      - le contrôle des joueurs (PokerPlayerController) ajoute et supprime les joueurs à la table
+ *      - la gestion de l'argent sur la table (PokerMoneyController) définit les blindes, les mises à effectuer, ...
+ *      - la gestion des tours (RoundController)
+ *
  */
+
 public class PokerGameController {
-    private IDeck deck;
+
     private IScoreController scoreController;
     private ICardController cardController;
     private PokerPlayerController playerController;
@@ -23,24 +27,19 @@ public class PokerGameController {
 
 
     public PokerGameController(List<IPlayer> pls)  {
-        deck = new PokerDeck();     // création du jeu de cartes
-        deck.shuffle();     // mélange des cartes
-        scoreController = new PokerScoreController(pls, 10);
-        cardController = new CardController(pls, deck);
+        scoreController = new PokerMoneyController(pls, 10);
+        cardController = new CardController(new PokerDeck());
         playerController = new PokerPlayerController(pls);
         roundController = new RoundController(pls, scoreController, cardController);
     }
 
     /**
-     * Gestion des joueurs
-     * Gestion des cartes
-     * Gestion de l'argent des joueurs
-     * Gestion d'un tour
+     * Lance la partie
      */
-    public void init()   {
-        // Distribue les cartes
-        cardController.dealPlayerHand();
-
+    public void start() {
+        for (int i=0; i<3; i++) {
+            roundController.doOneRound();
+        }
     }
 
     public void addPlayer(IPlayer pl)    {

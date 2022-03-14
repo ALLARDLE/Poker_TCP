@@ -10,7 +10,7 @@ import java.util.List;
  * Cette classe gère aussi les blinds.
  *
  */
-public class PokerScoreController implements IScoreController {
+public class PokerMoneyController implements IScoreController {
 
     private List<IPlayer> players;
     private int smallBlind;
@@ -20,14 +20,16 @@ public class PokerScoreController implements IScoreController {
     private int bet = 0;
     private int raise = 0;
 
-    public PokerScoreController(List<IPlayer> players, int smallBlind)   {
+    public PokerMoneyController(List<IPlayer> players, int smallBlind)   {
         this.players = players;
         this.smallBlind = smallBlind;
         this.bigBlind = 2 * smallBlind;
 
     }
+
     @Override
     public void firstRound() {
+        // TODO à supprimer et implémenter dans RoundController
         for (IPlayer player : players)  {
             if (player.isBigBlind())    {
                 player.setMoney(player.getMoney() - bigBlind);
@@ -42,21 +44,24 @@ public class PokerScoreController implements IScoreController {
 
     @Override
     public void bet(int bet, IPlayer player) {
+        // miser une certaine valeur
         player.setMoney(player.getMoney() - bet);       // met à jour l'argent du joueur
         this.bet = bet;         // la mise augmente
         this.call = bet;        // pour suivre il faut s'aligner sur la mise
-        this.raise = 2 * bet;      // pour relancer il faut jouer 2 fois la mise
+        this.raise = bet;      // pour relancer il faut jouer 2 fois la mise
         this.pot += bet;        // augmente le pot
     }
 
     @Override
     public void call(int call, IPlayer player) {
+        // s'aligne à la mise la plus haute
         //TODO à modifier
-        bet(raise, player);
+        bet(call, player);
     }
 
     @Override
     public void raise(int raise, IPlayer player) {
+        // relancer d'une certaine valeur
         //TODO à modifier
         bet(raise, player);
     }
