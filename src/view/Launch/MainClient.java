@@ -27,6 +27,7 @@ public class MainClient {
         while (true){
             System.out.println(" Que voulez vous faire ?");
             /**
+             * Leave
              * Check
              * Bet
              * Call
