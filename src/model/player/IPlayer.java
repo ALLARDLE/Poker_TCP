@@ -5,6 +5,9 @@ import model.card.IHand;
 
 
 public interface IPlayer {
+    boolean isInGame();
+    void setInGame(boolean inGame);
+
     String getName();
 
     void setHand(IHand hand);

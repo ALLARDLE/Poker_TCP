@@ -10,11 +10,20 @@ import java.util.List;
 
 public class CardController implements ICardController {
 
-    private final IDeck deck;
+    private IDeck deck;
     private final List<ICard> communityCards = new ArrayList<>();
 
     public CardController (IDeck deck)   {
         this.deck = deck;
+    }
+
+    /**
+     * Réinitialise le controller
+     * @param deck
+     */
+    public void resetController(IDeck deck)   {
+        this.deck = deck;
+        communityCards.clear();
     }
 
     /**

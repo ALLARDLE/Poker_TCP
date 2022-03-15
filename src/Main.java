@@ -13,11 +13,11 @@ public class Main {
             // Connexion des joueurs ...
             // Simulation
             List<IPlayer> players = new ArrayList<>();
-            for (int i=1; i<6; i++) {
+            for (int i=0; i<4; i++) {
                 players.add(new PokerPlayer(String.format("Player%d", i), 2000));
             }
 
-            // Création du plateau
+            // Création du jeu
             PokerGameController pokerGameController = new PokerGameController(players);
             pokerGameController.start();
 

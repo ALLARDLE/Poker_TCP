@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Classe gérant la modification du score des joueurs
- * Cette classe gère aussi les blinds.
+ * Cette classe gère aussi les blindes.
  *
  */
 public class PokerMoneyController implements IScoreController {
