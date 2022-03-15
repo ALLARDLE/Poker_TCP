@@ -8,8 +8,8 @@ import java.util.List;
 public class PokerPlayerController {
     private final List<IPlayer> players;
 
-    public PokerPlayerController()    {
-        players = new ArrayList<IPlayer>();
+    public PokerPlayerController(List<IPlayer> pls)    {
+        this.players = pls;
     }
 
     public void addPlayer(IPlayer player)   { players.add(player);}

@@ -39,7 +39,7 @@ public class PokerColor implements ICardColor {
 
     @Override
     public String toString() {
-        return "PokerColor=" + color;
+        return color.toString();
     }
 }
 

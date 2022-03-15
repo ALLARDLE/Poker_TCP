@@ -24,14 +24,14 @@ public class PokerCard implements ICard {
     @Override
     public int isUpperTo(Object o) throws Exception {
         if (this == o) return 0;
-        if (!(o instanceof Cards.PokerCard pokerCard)) throw new Exception();
+        if (!(o instanceof PokerCard pokerCard)) throw new Exception();
         return getValue().isUpperTo(pokerCard.getValue());
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Cards.PokerCard pokerCard)) return false;
+        if (!(o instanceof PokerCard pokerCard)) return false;
         return getColor().equals(pokerCard.getColor()) && getValue().equals(pokerCard.getValue());
     }
 

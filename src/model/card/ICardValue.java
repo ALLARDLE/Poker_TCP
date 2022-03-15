@@ -11,4 +11,5 @@ package model.card;
 interface ICardValue {
     boolean equals(Object o);
     int isUpperTo(Object o) throws Exception;
+    String toString();
 }

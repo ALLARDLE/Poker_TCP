@@ -1,5 +1,4 @@
-import controller.*;
-import model.card.*;
+import controller.PokerGameController;
 import model.player.IPlayer;
 import model.player.PokerPlayer;
 
@@ -10,26 +9,18 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            IDeck deck = new PokerDeck();
-            deck.shuffle();
 
             // Connexion des joueurs ...
             // Simulation
             List<IPlayer> players = new ArrayList<>();
-            for (int i=0; i<5; i++) {
+            for (int i=0; i<4; i++) {
                 players.add(new PokerPlayer(String.format("Player%d", i), 2000));
             }
 
-            IScoreController scoreController = new PokerScoreController(players, 10);
-            ICardController cardController = new CardController(players, deck);
-            RoundController roundController = new RoundController(players, scoreController, cardController);
-
-            cardController.dealPLayerHand();
-            roundController.run();
-
-            System.out.println(cardController.getCommunityCards());
-            System.out.println(players.get(0).toString());
-
+            // Création du jeu
+            PokerGameController pokerGameController = new PokerGameController(players);
+            pokerGameController.start();
+            System.out.println("Il n'y a plus assez de joueur");
 
         } catch (Exception e) {
             e.printStackTrace();
