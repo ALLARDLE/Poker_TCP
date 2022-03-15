@@ -33,7 +33,7 @@ public class PokerGameController {
 
 
     /**
-     * Lance la partie. La partie se déroule en 2 manches
+     * Lance la partie
      */
     public void start() {
         while (playerController.getPlayers().size() >= 2)   {       // tant qu'il y a suffisamment de joueurs sur la table

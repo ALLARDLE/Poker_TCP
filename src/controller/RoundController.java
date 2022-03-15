@@ -11,7 +11,7 @@ public class RoundController {
 
     private final List<IPlayer> players;
     private final List<IPlayer> inGamePlayers;
-    private IScoreController scoreController;
+    private final IScoreController scoreController;
     private final ICardController cardController;
     private static int roundCount;
 
@@ -76,13 +76,13 @@ public class RoundController {
         resetInGamePlayer();        // réinitialise les joueurs en jeu
         setBlinds();        // initialise les blindes
         cardController.dealPlayerHand(inGamePlayers);       // distribue les cartes aux joueurs
-        startBet();     // lance un tour d'enchère
+        startBet();     // lance un tour d'enchère TODO premier tour d'enchère, gérer action des blindes
 
         while(!isAWinner()) {       // tant qu'il n'y a pas de vainqueur
-            distributeCard();
+            distributeCommunityCard();
             startBet();
         }
-        scoreController.
+        scoreController.retrievePot(inGamePlayers.get(0));
         return inGamePlayers.get(0);        // le dernier joueur en jeu est le vainqueur
     }
 
@@ -94,7 +94,7 @@ public class RoundController {
     /**
      * Distribue les cartes en fonction du tour de jeu
      */
-    private void distributeCard()  {
+    private void distributeCommunityCard()  {
         switch (roundCount) {
             case 0 ->   {
                 cardController.dealFlop();
@@ -155,7 +155,7 @@ public class RoundController {
     }
 
     /**
-     * Vérifie si il y a un vainqueur
+     * Vérifie s'il y a un vainqueur
      * @return
      */
     private boolean isAWinner()  {

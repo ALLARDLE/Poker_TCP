@@ -28,6 +28,11 @@ public class PokerMoneyController implements IScoreController {
     }
 
     @Override
+    public void retrievePot(IPlayer player) {
+        player.setMoney(player.getMoney() + pot);
+    }
+
+    @Override
     public void firstRound() {
         // TODO à supprimer et implémenter dans RoundController
         for (IPlayer player : players)  {
@@ -48,12 +53,12 @@ public class PokerMoneyController implements IScoreController {
         player.setMoney(player.getMoney() - bet);       // met à jour l'argent du joueur
         this.bet = bet;         // la mise augmente
         this.call = bet;        // pour suivre il faut s'aligner sur la mise
-        this.raise = bet;      // pour relancer il faut jouer 2 fois la mise
+        this.raise = bet;      // pour relancer
         this.pot += bet;        // augmente le pot
     }
 
     @Override
-    public void call(int call, IPlayer player) {
+    public void call(IPlayer player) {
         // s'aligne à la mise la plus haute
         //TODO à modifier
         bet(call, player);

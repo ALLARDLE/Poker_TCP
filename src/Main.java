@@ -20,6 +20,7 @@ public class Main {
             // Création du jeu
             PokerGameController pokerGameController = new PokerGameController(players);
             pokerGameController.start();
+            System.out.println("Il n'y a plus assez de joueur");
 
         } catch (Exception e) {
             e.printStackTrace();
