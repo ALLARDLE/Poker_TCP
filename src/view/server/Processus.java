@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * Processus de Transaction (anciennement ServeurSpecifique)
+ * Le serveur a lancé le thread pour un client spécifique
  */
 class Processus extends Thread {
 
@@ -19,9 +19,8 @@ class Processus extends Thread {
 
     public void run() {
             try {
-
+                // exécution du protocole
                 monServeurTCP.getProtocole().execute(monServeurTCP.getContexte(), clientSocket.getInputStream(), clientSocket.getOutputStream());
-
                 System.out.println("Processus fait");
             } catch (IOException e) {
                 System.err.println("[Processus] Exception : " + e);

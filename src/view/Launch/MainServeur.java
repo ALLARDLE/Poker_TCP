@@ -2,6 +2,10 @@ package view.Launch;
 
 import view.server.ServeurTCP;
 
+
+/**
+ * Lance le serveur
+ */
 public class MainServeur {
 
     public static void main(String[] args) {

@@ -1,16 +1,11 @@
 package view.Launch;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintStream;
-
 import view.server.IContext;
 import view.server.IProtocole;
 
-public class ProtocoleSendSetup implements IProtocole {
+import java.io.*;
 
+public class ProtocoleSendSetup implements IProtocole {
 
     public void execute(IContext c, InputStream unInput, OutputStream unOutput) {
 
@@ -37,7 +32,7 @@ public class ProtocoleSendSetup implements IProtocole {
 
                         inputReq = chaines[1];
                         System.out.print(inputReq);
-                        System.out.print(" a rejoin la partie");
+                        System.out.print(" a rejoint la partie");
                         valeurExpediee = valeurExpediee + inputReq;}
 
                     else if(chaines[0].contentEquals("LEAVE")){
