@@ -1,15 +1,16 @@
 package view.server;
+import controller.PokerGameController;
 import model.player.IPlayer;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ServeurTCP extends Thread {
 
     private static int nbConnexions = 0;        // nombre de clients connectés
-    private static final int maxConnexions = 6;     // nombre de clients maximum
+    private static final int maxConnexions = 1;     // nombre de clients maximum
 
     private Socket clientSocket;
     private IContext contexte;
@@ -17,11 +18,12 @@ public class ServeurTCP extends Thread {
 
     private final int portNumber;
 
-    private final List<IPlayer> players;        // liste des joueurs connectés au serveur
+    private PokerGameController pokerGameController;
+
 
     public ServeurTCP(int port) {
         portNumber = port;
-        players = new ArrayList<>();
+        pokerGameController = new PokerGameController(new ArrayList<IPlayer>());
     }
 
     public ServeurTCP(IContext b,IProtocole p, int port) {
@@ -50,17 +52,19 @@ public class ServeurTCP extends Thread {
         /* On autorise maxConnexions traitements */
         while (nbConnexions <= maxConnexions) {
             try {
-                System.out.println("Attente du serveur pour la communication d'un client" );
-                clientSocket = serverSocket.accept();       // le socket associé au client
+                System.out.println("Serveur en attente de connexion...");
+                // FONCTION BLOQUANTE
+                clientSocket = serverSocket.accept();       // accepte la connexion d'un client
                 nbConnexions ++;
                 System.out.println("Nombre de clients connectés : " + nbConnexions);
             } catch (IOException e) {
                 System.out.println("Accept failed: " + serverSocket.getLocalPort() + ", " + e);
                 System.exit(1);
             }
-            Processus st = new Processus( clientSocket , this );        // lance le processus pour le
+            Processus st = new Processus( clientSocket , this );        // lance l'exécutant pour la connexion client
             st.start();
         }
+
         System.out.println("Deja " + nbConnexions + " clients. Maximum autorisé atteint");
 
         try {
