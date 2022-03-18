@@ -20,12 +20,8 @@ public class MainClient {
 
         Client client = new Client(name, port, serveur);
 
-        while (true)    {
-            client.listen();
-        }
-
-        if ( client.getTcp().connecterAuServeur() ) {
-            Clt.SendName();
+        if (client.getTcp().connect()) {
+            client.sendName();
         }
 
         while (true){
@@ -41,34 +37,31 @@ public class MainClient {
             String action = sc.next();
             switch (action) {
                 case "Leave":
-                    Clt.leave();
+                    client.leave();
                     break;
                 case "Check":
-                    Clt.Check();
+                    client.Check();
                     break;
                 case "Bet":
                     System.out.println("Entrez le montant de la mise :");
                     int bet = sc.nextInt();
-                    Clt.Bet(bet);
+                    client.Bet(bet);
                     break;
                 case "Call":
-                    Clt.Call();
+                    client.Call();
                     break;
                 case "Raise":
                     System.out.println("Entrez le montant de l'augmentation :");
                     int raise = sc.nextInt();
-                    Clt.Raise(raise);
+                    client.Raise(raise);
                     break;
                 case "Fold":
-                    Clt.Fold();
+                    client.Fold();
                     break;
                 default:
                     System.out.println(" Ordre inconnu ");
                     break;
             }
         }
-
-
-
     }
 }

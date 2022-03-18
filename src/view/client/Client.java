@@ -19,35 +19,38 @@ public class Client {
         tcp = new ClientTCP(nomServeur, numeroPort);
     }
 
+    public void listen(){
+
+    }
     /** On envoie au serveur le nom du joueur*/
     public void sendName(){
-        tcp.transmettreChaine(username);
+        tcp.send(username);
     }
 
     public void leave(){String ord = "LEAVE " + username;
-        tcp.transmettreChaine(ord);
-        tcp.deconnecterDuServeur();
+        tcp.send(ord);
+        tcp.disconnect();
     }
 
     public void Check(){String ord = "CHECK " + username;
-        tcp.transmettreChaine(ord);
+        tcp.send(ord);
     }
     public void Bet(int amount){
         String ord = "BET " + username + " " + String.valueOf(amount);
-        tcp.transmettreChaine(ord);
+        tcp.send(ord);
     }
     public void Call(){
         String ord = "CALL " + username;
-        tcp.transmettreChaine(ord);
+        tcp.send(ord);
     }
 
     public void Raise(int amount){
         String ord = "RAISE " + username + " " + String.valueOf(amount);
-        tcp.transmettreChaine(ord);
+        tcp.send(ord);
     }
     public void Fold(){
         String ord = "FOLD " + username;
-        tcp.transmettreChaine(ord);
+        tcp.send(ord);
     }
 
 
