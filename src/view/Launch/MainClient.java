@@ -18,9 +18,13 @@ public class MainClient {
         System.out.println("Sur quel port voulez vous vous connecter ?");
         int port = sc.nextInt();
 
-        Client Clt = new Client(name, port, serveur );
+        Client client = new Client(name, port, serveur);
 
-        if ( Clt.getTcp().connecterAuServeur() ) {
+        while (true)    {
+            client.listen();
+        }
+
+        if ( client.getTcp().connecterAuServeur() ) {
             Clt.SendName();
         }
 

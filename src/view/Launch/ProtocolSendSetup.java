@@ -1,13 +1,15 @@
 package view.Launch;
 
+import model.player.PokerPlayer;
 import view.server.IContext;
-import view.server.IProtocole;
+import view.server.IProtocol;
+import view.server.ServeurTCP;
 
 import java.io.*;
 
-public class ProtocoleSendSetup implements IProtocole {
+public class ProtocolSendSetup implements IProtocol {
 
-    public void execute(IContext c, InputStream unInput, OutputStream unOutput) {
+    public void execute(IContext c, InputStream unInput, OutputStream unOutput, ServeurTCP myServer) {
 
         String inputReq;
         BufferedReader is = new BufferedReader(new InputStreamReader(unInput));
@@ -28,7 +30,8 @@ public class ProtocoleSendSetup implements IProtocole {
 
                         System.out.print("Le joueur ");
 
-                        /** creer le joueur*/
+                        // Création du joueur
+                        myServer.getPokerGameController().addPlayer(new PokerPlayer(chaines[1], 2000));
 
                         inputReq = chaines[1];
                         System.out.print(inputReq);

@@ -1,20 +1,21 @@
 package view.server;
 import controller.PokerGameController;
 import model.player.IPlayer;
+import model.player.PokerPlayerTCP;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class ServeurTCP extends Thread {
+public class ServeurTCP implements Runnable {
 
     private static int nbConnexions = 0;        // nombre de clients connectés
-    private static final int maxConnexions = 1;     // nombre de clients maximum
+    private static final int maxConnexions = 6;     // nombre de clients maximum
 
     private Socket clientSocket;
     private IContext contexte;
-    private IProtocole protocole;
+    private IProtocol protocole;
 
     private final int portNumber;
 
@@ -23,10 +24,9 @@ public class ServeurTCP extends Thread {
 
     public ServeurTCP(int port) {
         portNumber = port;
-        pokerGameController = new PokerGameController(new ArrayList<IPlayer>());
     }
 
-    public ServeurTCP(IContext b,IProtocole p, int port) {
+    public ServeurTCP(IContext b, IProtocol p, int port) {
         this(port);
         contexte = b;
         protocole = p;
@@ -40,14 +40,16 @@ public class ServeurTCP extends Thread {
 
     @Override
     public void run() {
+        pokerGameController = new PokerGameController(new ArrayList<IPlayer>());
+        new Thread(pokerGameController).start();
+
         ServerSocket serverSocket = null;       // socket du serveur
         try {
-            serverSocket = new ServerSocket (portNumber);       // lance un socket pour le serveur
+            serverSocket = new ServerSocket(portNumber);       // lance un socket pour le serveur
         } catch (IOException e) {
             System.out.println("Could not listen on port: " + portNumber + ", " + e);
             System.exit(1);
         }
-
 
         /* On autorise maxConnexions traitements */
         while (nbConnexions <= maxConnexions) {
@@ -61,8 +63,8 @@ public class ServeurTCP extends Thread {
                 System.out.println("Accept failed: " + serverSocket.getLocalPort() + ", " + e);
                 System.exit(1);
             }
-            Processus st = new Processus( clientSocket , this );        // lance l'exécutant pour la connexion client
-            st.start();
+            PokerPlayerTCP pokerPlayerTCP = new PokerPlayerTCP( clientSocket , this );        // lance l'exécutant pour la connexion client
+            new Thread(pokerPlayerTCP).start();
         }
 
         System.out.println("Deja " + nbConnexions + " clients. Maximum autorisé atteint");
@@ -76,8 +78,11 @@ public class ServeurTCP extends Thread {
 
     }
 
+    public PokerGameController getPokerGameController()   {
+        return pokerGameController;
+    }
 
-    public IProtocole getProtocole() {
+    public IProtocol getProtocole() {
         return protocole;
     }
 

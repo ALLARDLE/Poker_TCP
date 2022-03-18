@@ -16,7 +16,7 @@ import java.util.List;
  *
  */
 
-public class PokerGameController {
+public class PokerGameController implements Runnable {
 
     private final PokerPlayerController playerController;
     private final RoundController roundController;
@@ -35,7 +35,7 @@ public class PokerGameController {
     /**
      * Lance la partie
      */
-    public void start() {
+    public void run() {
         while (playerController.getPlayers().size() >= 2)   {       // tant qu'il y a suffisamment de joueurs sur la table
             IPlayer winner = roundController.start();       // lance une manche
             System.out.print("Winner is ");

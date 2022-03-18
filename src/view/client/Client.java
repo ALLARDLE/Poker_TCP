@@ -1,15 +1,14 @@
 package view.client;
-import java.util.Scanner;
 
 public class Client {
 
-    private ClientTCP tcp;
+    private final ClientTCP tcp;
 
-    private String username;
+    private final String username;
 
-    private int numeroPort;
+    private final int numeroPort;
 
-    private String nomServeur;
+    private final String nomServeur;
 
 
     /** On associe un joueur à un client qui se connecte a un serveur identifie par un nom (unNomServeur), sur un port unNumero */
@@ -17,37 +16,38 @@ public class Client {
         username = PlayerName;
         numeroPort = PlayerPort;
         nomServeur = unNomServeur;
-        tcp = new ClientTCP(nomServeur,numeroPort);
+        tcp = new ClientTCP(nomServeur, numeroPort);
     }
 
     /** On envoie au serveur le nom du joueur*/
-    public String SendName(){
-        return tcp.transmettreChaine("NOM " + username);
+    public void sendName(){
+        tcp.transmettreChaine(username);
     }
 
-    public String leave(){String ord = "LEAVE " + username;
-        return tcp.transmettreChaine(ord);
+    public void leave(){String ord = "LEAVE " + username;
+        tcp.transmettreChaine(ord);
+        tcp.deconnecterDuServeur();
     }
 
-    public String Check(){String ord = "CHECK " + username;
-        return tcp.transmettreChaine(ord);
+    public void Check(){String ord = "CHECK " + username;
+        tcp.transmettreChaine(ord);
     }
-    public String Bet(int amount){
+    public void Bet(int amount){
         String ord = "BET " + username + " " + String.valueOf(amount);
-        return tcp.transmettreChaine(ord);
+        tcp.transmettreChaine(ord);
     }
-    public String Call(){
+    public void Call(){
         String ord = "CALL " + username;
-        return tcp.transmettreChaine(ord);
+        tcp.transmettreChaine(ord);
     }
 
-    public String Raise(int amount){
+    public void Raise(int amount){
         String ord = "RAISE " + username + " " + String.valueOf(amount);
-        return tcp.transmettreChaine(ord);
+        tcp.transmettreChaine(ord);
     }
-    public String Fold(){
+    public void Fold(){
         String ord = "FOLD " + username;
-        return tcp.transmettreChaine(ord);
+        tcp.transmettreChaine(ord);
     }
 
 
